@@ -31,13 +31,148 @@ c(r) = -\frac{k_S(p_1-p_2)ab}{(b-a)r}+\frac{k_S(bp_1-ap_2)}{b-a}.
 Массовый поток гелия через любое сечение $r=r_0$ ($a\leq r_0 \leq b$) с площадью $S_0=4\pi r_0^2$ равен
 \begin{equation}
 \label{eq:FikHenry_hellium_permeation_model_massflow}
-q = -D \left. \pd{c}{r} \right|_{r=r_0}S_0=-\frac{C_m S \beta}{d}(p_1-p_2),
+q = -D \left. \pd{c}{r} \right|_{r=r_0}S_0=-\frac{C_m S \gamma}{d}(p_1-p_2),
 \end{equation}
-где $C_m = D k_s$ -- коэффициент проницаемости материала стенки; $S=4 \pi b^2$~--~площадь поверхности микросферы; $\beta$ = $a/b$; $d=b-a$ -- толщина стенки микросферы.
+где $C_m = D k_s$ -- коэффициент проницаемости материала стенки; $S=4 \pi b^2$~--~площадь поверхности микросферы; $\gamma$ = $a/b$; $d=b-a$ -- толщина стенки микросферы.
 
-Массовый поток для сферической мембраны (\ref{eq:FikHenry_hellium_permeation_model_massflow}) отличается от потока для плоской мембраны \cite{Hvang, Ditnerskiy, Mulder} множителем $\beta$. В случае, когда стенки микросфер очень тонкие $a \approx b$ им можно пренебречь.
+Массовый поток для сферической мембраны (\ref{eq:FikHenry_hellium_permeation_model_massflow}) отличается от потока для плоской мембраны \cite{Hvang, Ditnerskiy, Mulder} множителем $\gamma$. В случае, когда стенки микросфер очень тонкие $a \approx b$ им можно пренебречь.
 
 \subsection{Математическая модель поглощения гелия в предположении одинаковости физических и геометрических свойств микросфер}
+
+Используя полученную формулу массового потока гелия в частицу (\ref{eq:FikHenry_hellium_permeation_model_massflow}), задача поглощения одной микросферой гелия, находящегося в реакторе с внешним парциальным давлением $p_1$ и внутренним $p_2$ сводится к решению уравнения:
+\begin{equation}
+\label{eq:one_particle_permiation}
+\dt{M^0_2}= \frac{C_m\gamma S}{d}(p_1-p_2).
+\end{equation}
+%здесь $M^0_2(t)$ -- масса гелия внутри микросферы, как функция от времени $t$; $C_m$~--~ коэффициент проницаемости материала стенки микросферы; $S$ -- площадь поверхности, через которую происходит массообмен; $d$ -- толщина стенки микросферы; $p_1(t)$, $p_2(t)$ -- парциальное давление гелия снаружи микросферы и внутри соответственно; $\gamma$ -- отношение радиуса полос.
+%
+%В общем виде в уравнении (\ref{eq:one_particle_permiation}) подразумевается степенной закон проницаемости газа сквозь стенки микросфер, который в частном случае $n=1$, превращается в классический закон, который является следствием, например таких явлений, как мгновенная диффузия или фильтрация гелия сквозь стенку частицы \cite{Barrer, FGS}.
+
+Рассмотрим процесс поглощения/выделения гелия из частицы на примере сосуда с одинаковыми микросферами, заполненного газом (гелием) равномерно по всему объёму. В начальный момент времени микросферы одинаково заполнены.  Считая, что они распределены равномерно по всему объёму и, что процесс поглощения происходит одинаково во всех точках системы, замкнутая система уравнений, описывающая этот процесс, имеет вид:
+\begin{equation}
+\left\{
+\begin{array}{l}
+\label{eq:permeation_even_laws}
+\displaystyle\dt{M_2(t)}= k\frac{C_m\gamma S}{d}(p_1(t)-p_2(t)), \\
+%\label{eq:permeation_even_laws_M1}
+M_1(t)+M_2(t)=M_0
+\end{array}
+\right.
+\end{equation}
+с замыкающими соотношениями
+\begin{equation}
+\label{eq:permeation_even_laws_relations}
+\displaystyle p_1(t) = \frac{M_1(t)R_{He}T}{V_1},\quad p_2(t)=\frac{M_2(t)R_{He}T}{V_2},
+\end{equation}
+где  $M_1(t)$, $M_2(t)$ -- масса гелия, находящаяся в свободном объеме и полостях всех микросфер, во время $t$; $M_0$ -- суммарная масса гелия в системе; $k$ -- количество микросфер в системе; $R_{He}$ -- универсальная газовая постоянная для гелия; $T$ -- температура газа; $V_1$ -- свободный объем реактора; $V_2$ -- объем  полостей всех микросфер; $S$ -- площадь поверхности одной микросферы; $d$ -- толщина стенки микросферы; $C_m$ -- коэффициент проницаемости материала стенки микросферы. 
+
+Первое соотношение (\ref{eq:permeation_even_laws}) описывает закон поглощения/выделения гелия всеми микросферами системы, второе -- закон сохранения массы в системе. 
+
+Используя  (\ref{eq:permeation_even_laws_relations}) и соотношения, вытекающие из геометрии для микросфер с радиусом полости $r$ и внешним радиусом $R$,
+\[
+S=4\pi R^2,\quad d=R-r,\quad V_2=k\frac{4}{3}\pi r^3,
+\]
+в терминах переменных $p_1(t)$ и $p_2(t)$ система уравнений (\ref{eq:permeation_even_laws}) записывается в виде:
+\begin{equation}
+\left\{
+\begin{array}{l}
+\label{eq:permeation_even_laws_p} 
+\displaystyle \dt{p_2}  =  K(p_1-p_2), \\
+p_1+\alpha p_2  =  p_1^0 + \alpha p_2^0, 
+\end{array}
+\right.
+\end{equation}
+при начальных условиях
+\begin{equation}
+\label{eq:permeation_even_laws_cauchy} p_1|_{t=0}=p_1^0,\quad p_2|_{t=0}=p_2^0,
+\end{equation}
+здесь $\alpha=V_2/V_1$; $K = C_m R_{He} T\displaystyle\frac{3}{\gamma rd}$, а $p_1^0$, $p_2^0$ -- начальные парциальные давления гелия в свободном объёме и внутри полостей. 
+
+Решением (\ref{eq:permeation_even_laws_p}) и (\ref{eq:permeation_even_laws_cauchy}) будут следующие функции:
+\begin{eqnarray}
+\label{permeation_even_p1}
+p_1(t) & = & \frac{p_1^0 + \alpha p_2^0}{1+\alpha} - \frac{\alpha}{1+\alpha}(p_2^0-p_1^0)e^{-K(1+\alpha)t}, \\
+\label{permeation_even_p2}
+p_2(t) & = & \frac{p_1^0 + \alpha p_2^0}{1+\alpha} + \frac{1}{1+\alpha}(p_2^0-p_1^0)e^{-K(1+\alpha)t}.
+\end{eqnarray}
+
+Из вида функций $p_1(t)$ и $p_2(t)$ легко понять, что они начиная со своих начальных значений при $t=0$ экспоненциально стремятся к равновесному давлению $p_\infty=\displaystyle\frac{p_1^0 + \alpha p_2^0}{1+\alpha}$, а скорость стремления к асимптоте зависит от величины $K(1+\alpha)$. Схематично решения в зависимости от различных значений $p_1^0$ и $p_2^0$ изображены на рисунке % \ref{pic:permeation_even}.
+
+%
+%\begin{figure}[ht] 
+%	\centering
+%	\includegraphics[width=\textwidth]{part_2/permeation_even}
+%	\caption{Схематичное изображение решения задачи о поглощении гелия одинаковыми микросферами: }
+%	\label{img:latex}
+%\end{figure}
+
+%запишем уравнение (\ref{M2_permiation}) в следующем виде
+%\begin{equation}
+%\label{p2_permiation}
+%\dt{p_2}=-C_m\frac{3R_{He}T}{r d}(p_1-p_2)^n.
+%\end{equation}
+%
+%В системе имеет место закон сохранения массы
+%\begin{equation}
+%M_1+M_2=M_0,
+%\end{equation}
+%где $M_1$ -- масса гелия в свободном объеме вне частиц; $M_0$ -- общая масса гелия в системе, который в терминах давлений примет вид
+%\begin{equation}
+%p_1+\alpha p_2=p_0,
+%\end{equation}
+%где $\alpha=V_2/V_1$; $p_0$ -- давление вне частиц в начальный момент времени.
+%
+%Таким образом, получаем систему уравнений модели поглощения гелия микросферами
+%\begin{eqnarray}
+%\label{system_permiation} \dt{p_2} & = & -C_m\frac{3R_{He}T}{rd}(p_1-p_2)^n, \\
+%\label{system_mass} p_1+\alpha p_2 & = & p_0,
+%\end{eqnarray}
+%при начальных условиях
+%\begin{equation}
+%\label{system_cauchy} p_1|_{t=0}=p_0,\quad p_2|_{t=0}=0.
+%\end{equation}
+%
+%
+%Обезразмерим систему уравнений (\ref{system_permiation})-(\ref{system_mass}) с начальными условиями (\ref{system_cauchy}) по следующим правилам
+%\begin{equation}
+%\label{dim_connections}
+%p_1=p_0p_1',\quad p_2=p_0p_2', \quad t=\tau t'.
+%\end{equation}
+%Тогда она примет следующий вид
+%\begin{eqnarray}
+%\label{system_permiation_dimentionless} \dt{p_2'} & = & -C_m\frac{3R_{He}T}{r(R-r)}\tau p_0^{n-1}(p_1'-p_2')^n, \\
+%\label{system_mass_dimentionless} p_1'+\alpha p_2' & = & 1
+%\end{eqnarray}
+%при начальных условиях
+%\begin{equation}
+%\label{system_cauchy_dimentionless} p_1'|_{t=0}=1,\quad p_2'|_{t=0}=0.
+%\end{equation}
+%
+%Из приведенных уравнений следует, что выбором
+%\begin{equation}
+%\label{dim_connections_tau}
+%\tau=\frac{rd}{3R_{He}Tp_0^{n-1}(1+\alpha)C_m}
+%\end{equation}
+%можно свести систему, описывающую задачу поглощения гелия микросферами, к однопараметрической системе уравнений, зависящей только от $\alpha$. Таким образом, все задачи с одинаковым отношением внутреннего объема микросфер к внешнему свободному объему подобны с точностью до выбора параметра, описывающего время.
+%Далее в рассуждениях предполагается именно такое значение $\tau$.
+%
+%
+%В случае $n=1$ система уравнений  (\ref{system_permiation_dimentionless})-(\ref{system_mass_dimentionless}) с начальными условиями (\ref{system_cauchy_dimentionless}) имеет следующее решение
+%
+%\begin{eqnarray}
+%\label{neq1_p1} p_1' & = & \frac{1+\alpha e^{-t'}}{1+\alpha},\\
+%\label{neq1_p2} p_2' & = & \frac{1- e^{-t'}}{1+\alpha}.
+%\end{eqnarray}
+%
+%В случае $n \neq 1$ имеет место следующее решение
+%\begin{eqnarray}
+%\label{nneq1_p1} p_1' & = & \frac{1}{1+\alpha}\left\{1+\alpha\left[1+(n-1)t'\right]^{-\frac{1}{n-1}}\right\},\\
+%\label{nneq1_p2} p_2' & = & \frac{1}{1+\alpha}\left\{1-\left[1+(n-1)t'\right]^{-\frac{1}{n-1}}\right\}.
+%\end{eqnarray}
+%
+%В обоих случаях для перехода от безразмерных переменных к размерным имеют место соотношения (\ref{dim_connections}) и (\ref{dim_connections_tau}).
+
+
 \subsection{Математическая модель поглощения гелия в предположении дисперсионного распределения микросфер по геометрическим и физическим параметрам}
 \subsection{Моделирование поглощения гелия композитным сорбентом на основе микросфер}
 
