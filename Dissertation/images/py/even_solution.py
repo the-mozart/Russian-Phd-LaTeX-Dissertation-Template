@@ -38,31 +38,52 @@ pinfty = (p10+alfa*p20)/(1+alfa)
 
 t = np.linspace(0, 10, num=100) 
 
-fig = plt.figure(figsize=(7,5))
+fig = plt.figure(figsize=(5,4))
 ax = []
 ax.append(fig.add_subplot(1,1,1))
 
-ax[0].set_xlabel('$t$')
-ax[0].set_ylabel("$p$")
-ax[0].plot(t, p1(t), label="$p_1(t)$")
-ax[0].plot(t, p2(t), label="$p_2(t)$")
-ax[0].plot(t, np.ones_like(t)*pinfty, "--", label="$p_{\\infty}$")
-
-y = [0.25, 2]
-labels = ["0", "$p_2^0$", "", "","","","","", "$p_1^0$"]
 
 ax[0].set_xlim(0,10)
 ax[0].set_ylim(0,2)
 
-#ax[0].annotate("$p_{\\infty}$", xy=(0, pinfty),
-## xytext=(0, pinfty),
-##            arrowprops=dict(facecolor='black', shrink=0.05),
-#            )
+ax[0].set_xlabel('$t$')
+ax[0].set_ylabel("$p$")
 
-ax[0].set_yticklabels( labels )
+ax[0].plot(t, p1(t), label="$p_1(t)$")
+ax[0].plot(t, p2(t), label="$p_2(t)$")
+ax[0].plot(t, np.ones_like(t)*pinfty, "--", label="$p_{\\infty}$")
 
 
-#ax[0].set_xticks(range(10), ["","","","","","","","","",""] )
+yticks = np.append(np.linspace(0, max(p10,p20), num=9), np.array([pinfty, p10, p20]))
+ax[0].axes.set_yticks(yticks)
+
+#ax[0].axes.set_xticks(ax.get_xticks())
+#print(ax[0].get_xticks())
+xts = list(ax[0].get_xticks())
+xlabel = ["" for xt in xts]
+
+
+
+ylabel = []
+
+for yt in yticks:
+    if (abs(yt - p10) < 1e-5):
+        ylabel.append("$p_1^0$")
+    elif (abs(yt - p20) < 1e-5):
+        ylabel.append("$p_2^0$")
+    elif (abs(yt - pinfty) < 1e-5):
+        ylabel.append("$p_{\\infty}$")
+    elif (abs(yt) < 1e-5):
+        ylabel.append("0")
+    else:
+        ylabel.append("")
+
+
+ax[0].set_yticklabels( ylabel )
+ax[0].set_xticklabels( xlabel )
+
+ax[0].set_xlim(0,10)
+ax[0].set_ylim(0,2)
 
 for a in ax:
     a.grid(True)
